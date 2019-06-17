@@ -38,7 +38,7 @@ class Profile(models.Model):
     mobile = models.PositiveIntegerField(_("Mobile Number"), unique=True, validators=[MaxValueValidator(9999999999)])
     gender = models.CharField(max_length=11, choices=GENDER, null=True)
     profile_pic = models.ImageField(_("profile Picture"), upload_to='profile_pic', null=True, blank=True, default='profile_pic/blank-profile-pic.jpg')
-    dob = models.DateField(_("Date of birth"), validators=[dob_validator], null=True)
+    dob = models.DateField(_("Date of birth"), validators=[dob_validator], null=True, blank=True)
     permanent_address = models.OneToOneField(Address, null=True, related_name='permanent_address', on_delete=models.SET_NULL, blank=True)
     company_address = models.OneToOneField(Address, null=True, related_name='company_address', on_delete=models.SET_NULL, blank=True)
     friends = models.ManyToManyField('self', blank=True)
