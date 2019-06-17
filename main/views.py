@@ -8,6 +8,3 @@ from django.urls import reverse, reverse_lazy
 def index(request):
     return render(request, 'index.html')
 
-@login_required(login_url=reverse_lazy('accounts:login'))
-def dashboard(request):
-    return HttpResponse('<h1>Hey ' + request.user.username +'</h1>')

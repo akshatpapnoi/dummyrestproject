@@ -27,6 +27,8 @@ class Address(models.Model):
     pincode = models.PositiveIntegerField(validators=[MaxValueValidator(999999)])
     country = models.CharField(max_length=30)
 
+    def __str__(self):
+        return self.street + ', ' + self.city + ', ' + self.state 
 
 
 class Profile(models.Model):
