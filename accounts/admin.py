@@ -4,7 +4,11 @@ from django.utils.safestring import mark_safe
 from django.utils.html import format_html
 
 
-admin.site.register(Address)
+class AddressAdmin(admin.ModelAdmin):
+    list_display = ('street', 'city', 'state', 'country')
+
+
+admin.site.register(Address, AddressAdmin)
 #admin.site.register(Profile)
 #admin.site.register(Profile,list_display=['name', 'email', 'mobile', 'gender'], search_fields=('name',), list_filter = ('gender', 'permanent_address',))
 

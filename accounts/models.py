@@ -27,8 +27,6 @@ class Address(models.Model):
     pincode = models.PositiveIntegerField(validators=[MaxValueValidator(999999)])
     country = models.CharField(max_length=30)
 
-    #class Meta:
-     #ss   unique_together = ("street", "city", "state", "pincode", "country")
 
 
 class Profile(models.Model):
