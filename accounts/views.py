@@ -4,35 +4,34 @@ from django.urls import reverse, reverse_lazy
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .forms import SiteUserForm
+
 from django.contrib.auth.forms import UserCreationForm
-from .models import SiteUser
+from .models import Profile
 from django.core.exceptions import ValidationError
+from .forms import ProfileForm
 
 
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        print('post')
         userform = UserCreationForm(request.POST)
-        siteuserform = SiteUserForm(request.POST)
+        profileform = ProfileForm(request.POST)
 
-        if userform.is_valid() and siteuserform.is_valid():
-            print('valid form')
+        if userform.is_valid() and profileform.is_valid():
             user = userform.save()
-            siteuser = siteuserform.save(commit=False)
-            siteuser.user = user
-            siteuser.save()
+            profile = profileform.save(commit=False)
+            profile.user = user
+            profile.save()
             return HttpResponseRedirect(reverse('main:dashboard'))
 
     else:
         userform = UserCreationForm
-        siteuserform = SiteUserForm
-    return render(request, 'register.html', {'user_form': userform, 'user_profile_form': siteuserform})
+        profileform = ProfileForm
+    return render(request, 'register.html', {'user_form': userform, 'profile_form': profileform})
 
 def user_login(request):
     if request.method == 'POST':
-        if SiteUser.objects.filter(user__username = request.POST['username']).exists():
+        if Profile.objects.filter(user__username = request.POST['username']).exists():
             username = request.POST['username']
             password = request.POST['password']
             user = authenticate(username=username, password=password)
