@@ -29,7 +29,7 @@ SECRET_KEY = '#x_0kc0hwnc&ah4*c-d(yfatra#ns3agaj6++95#g_42+lc%rp'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['halanx-hiring.herokuapp.com']
 
 
 # Application definition
